@@ -19,7 +19,7 @@ from django_otp.admin import OTPAdminSite
   
 admin.site.__class__ = OTPAdminSite
 urlpatterns = [
-    path('staysafe/', admin.site.urls),
+    path('sgstaysafe/', admin.site.urls),
 ]
 
 admin.site.site_header = 'SG Stay Safe Admin Portal'
