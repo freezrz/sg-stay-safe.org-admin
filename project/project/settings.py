@@ -20,12 +20,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-(9m4i$tm^2b%%hnptu8-w5j^_c01a#^m)yk=kfw@@it8&1^_a1'
+#SECRET_KEY = 'django-insecure-(9m4i$tm^2b%%hnptu8-w5j^_c01a#^m)yk=kfw@@it8&1^_a1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ec2-13-215-140-211.ap-southeast-1.compute.amazonaws.com', 'ec2-13-250-53-43.ap-southeast-1.compute.amazonaws.com','sus-lb-1890922158.ap-southeast-1.elb.amazonaws.com']
+ALLOWED_HOSTS = ['ec2-13-215-140-211.ap-southeast-1.compute.amazonaws.com', 'ec2-13-250-53-43.ap-southeast-1.compute.amazonaws.com','sus-lb-1890922158.ap-southeast-1.elb.amazonaws.com', '172.31.46.91','admin.sg-stay-safe.com',]
 
 
 # Application definition
@@ -136,46 +136,20 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-###########################################################
-# added for SUS project
-
-# 1. X-XSS-Protection 
-# Default: False
-# If True, the SecurityMiddleware sets the X-XSS-Protection: 1; mode=block header 
-# on all  responses that do not already have it.
 SECURE_BROWSER_XSS_FILTER = True
 
-# 3. HTTP Strict Transport Security (HSTS)
-###SECURE_HSTS_SECONDS = 31536000 
-#Default: False
-# If True, the SecurityMiddleware adds the includeSubDomains directive to the HTTP Strict Transport Security header. 
-# It has no effect unless SECURE_HSTS_SECONDS is set to a non-zero value.
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-# Default: 0
-# If set to a non-zero integer value, the SecurityMiddleware sets the 
-# HTTP Strict Transport Security header on all responses that do not already have it.
 
-# 4. X-Frame-Options
-# Default: 'SAMEORIGIN'
-# The default value for the X-Frame-Options header used by XFrameOptionsMiddleware. 
-# You can use this settings if you want
-# X_FRAME_OPTIONS = 'DENY'
 SECURE_CROSS_ORIGIN_OPENER_POLICY = "SAMEORIGIN"
 
-# 5. X-Content-Type-Options
 SECURE_CONTENT_TYPE_NOSNIFF = True
-# Default: False
-# If True, the SecurityMiddleware sets the X-Content-Type-Options: nosniff 
-# header on all responses that do not already have it.
 
-# 6. SESSION_COOKIE_HTTPONLY
-# Default: True
-# Whether to use HTTPOnly flag on the session cookie. If this is set to True, 
-# client-side JavaScript will not to be able to access the session cookie.
 SESSION_COOKIE_SECURE = False
-# Default: False
-# Whether to use a secure cookie for the session cookie. If this is set to True, 
-# the cookie will be marked as “secure,” which means browsers may ensure 
-# that the cookie is only sent under an HTTPS connection
 
-#########################################################
+#CSRF_COOKIE_HTTPONLY = True
+
+CSP_DEFAULT_SRC = ("'self'", "http://ec2-13-250-53-43.ap-southeast-1.compute.amazonaws.com")
+
+CSP_STYLE_SRC = ("'unsafe-inline'", "https:")
+
+
