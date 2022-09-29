@@ -25,7 +25,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ec2-13-215-140-211.ap-southeast-1.compute.amazonaws.com', 'ec2-13-250-53-43.ap-southeast-1.compute.amazonaws.com','sus-lb-1890922158.ap-southeast-1.elb.amazonaws.com', '172.31.46.91','admin.sg-stay-safe.com',]
+#ALLOWED_HOSTS = ['ec2-13-215-140-211.ap-southeast-1.compute.amazonaws.com', 'ec2-13-250-53-43.ap-southeast-1.compute.amazonaws.com','sus-lb-1890922158.ap-southeast-1.elb.amazonaws.com', '172.31.46.91','admin.sg-stay-safe.com',]
+ALLOWED_HOSTS = ['172.31.46.91','admin.sg-stay-safe.com', '18.140.26.237']
 
 
 # Application definition
@@ -146,10 +147,8 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 
 SESSION_COOKIE_SECURE = False
 
-#CSRF_COOKIE_HTTPONLY = True
+CSRF_COOKIE_HTTPONLY = True
 
-CSP_DEFAULT_SRC = ("'self'", "http://ec2-13-250-53-43.ap-southeast-1.compute.amazonaws.com")
 
-CSP_STYLE_SRC = ("'unsafe-inline'", "https:")
 
 
