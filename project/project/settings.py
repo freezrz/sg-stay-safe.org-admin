@@ -157,5 +157,39 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 CSRF_TRUSTED_ORIGINS = ('https://admin.sg-stay-safe.com/sgstaysafe','http://admin.sg-stay-safe.com/sgstaysafe')
 
+#CSP Security
+
+CSP_REPORT_URI = '<add your reporting uri>'
+
+CSP_DEFAULT_SRC = ("'self'", )
+
+CSP_STYLE_SRC = ("'self'",
+	"stackpath.bootstrapcdn.com")
+
+CSP_SCRIPT_SRC = ("'self'",
+	"ajax.cloudflare.com",
+	"static.cloudflareinsights.com",
+	"www.google-analytics.com",
+	"ssl.google-analytics.com",
+	"cdn.ampproject.org",
+	"www.googletagservices.com",
+	"pagead2.googlesyndication.com")
+
+CSP_IMG_SRC = ("'self'",
+	"www.google-analytics.com",
+	"raw.githubusercontent.com",
+	"googleads.g.doubleclick.net")
+
+CSP_FONT_SRC = ("'self'", )
+CSP_CONNECT_SRC = ("'self'",
+	"www.google-analytics.com" )
+CSP_OBJECT_SRC = ("'self'", )
+CSP_BASE_URI = ("'self'", )
+CSP_FRAME_ANCESTORS = ("'self'", )
+CSP_FORM_ACTION = ("'self'", )
+CSP_INCLUDE_NONCE_IN = ('script-src', )
+CSP_MANIFEST_SRC = ("'self'", )
+CSP_WORKER_SRC = ("'self'", )
+CSP_MEDIA_SRC = ("'self'", )
 
 
