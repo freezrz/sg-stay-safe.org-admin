@@ -151,13 +151,16 @@ SESSION_COOKIE_SECURE = True
 
 X_FRAME_OPTIONS = 'DENY'
 
+#CSRF Security
 CSRF_COOKIE_HTTPONLY = True
 
 CSRF_COOKIE_SECURE = True
 
-CSRF_USE_SESSIONS = True
-
 CSRF_TRUSTED_ORIGINS = ('https://admin.sg-stay-safe.com/sgstaysafe','http://admin.sg-stay-safe.com/sgstaysafe')
+
+CSRF_COOKIE_DOMAIN  = ('.admin.sg-stay-safe.com')
+
+CSRF_COOKIE_SAMESITE = 'Lax'
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
