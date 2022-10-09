@@ -23,10 +23,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 #SECRET_KEY = 'django-insecure-(9m4i$tm^2b%%hnptu8-w5j^_c01a#^m)yk=kfw@@it8&1^_a1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+#DEBUG = True
+DEBUG = False
 
-#ALLOWED_HOSTS = ['ec2-13-215-140-211.ap-southeast-1.compute.amazonaws.com', 'ec2-13-250-53-43.ap-southeast-1.compute.amazonaws.com','sus-lb-1890922158.ap-southeast-1.elb.amazonaws.com', '172.31.46.91','admin.sg-stay-safe.com',]
-ALLOWED_HOSTS = ['172.31.46.91','admin.sg-stay-safe.com', '18.140.26.237']
+#ALLOWED_HOSTS = ['ec2-13-215-140-211.ap-southeast-1.compute.amazonaws.com', 'ec2-13-250-53-43.ap-southeast-1.compute.amazonaws.com','sus-lb-1890922158.ap-southeast-1.elb.amazonaws.com', '172.31.46.91','admin.sg-stay-safe.com','13.250.53.43']
+ALLOWED_HOSTS = ['172.31.46.91','admin.sg-stay-safe.com', '18.140.26.237','13.212.74.161','ec2-13-212-74-161.ap-southeast-1.compute.amazonaws.com']
 
 
 # Application definition
@@ -148,14 +149,17 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 
 SESSION_COOKIE_SECURE = True
 
-CSRF_COOKIE_HTTPONLY = True
+X_FRAME_OPTIONS = 'DENY'
 
+CSRF_COOKIE_HTTPONLY = True
 
 CSRF_COOKIE_SECURE = True
 
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+CSRF_USE_SESSIONS = True
 
 CSRF_TRUSTED_ORIGINS = ('https://admin.sg-stay-safe.com/sgstaysafe','http://admin.sg-stay-safe.com/sgstaysafe')
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 #CSP Security
 
@@ -191,5 +195,16 @@ CSP_INCLUDE_NONCE_IN = ('script-src', )
 CSP_MANIFEST_SRC = ("'self'", )
 CSP_WORKER_SRC = ("'self'", )
 CSP_MEDIA_SRC = ("'self'", )
+STATIC_URL = "/static/"
+STATIC_ROOT = "/var/www/sgstaysafe/static"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+#HSTS
+SECURE_HSTS_SECONDS = 2_592_000  # Unit is seconds; *USE A SMALL VALUE FOR TESTING!*
+SECURE_HSTS_PRELOAD = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+# Setting the Referrer-Policy Header
+SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
+
 
 
