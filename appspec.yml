@@ -1,0 +1,9 @@
+version: 0.0
+os: linux 
+files:
+  - source: /
+    destination: /home/ubuntu/sg-stay-safe.org-admin
+permissions:
+  - object: /home/ubuntu/sg-stay-safe.org-admin
+    owner: ubuntu
+    group: ubuntu
