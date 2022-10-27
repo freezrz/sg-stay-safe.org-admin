@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_otp',
-    'django_otp.plugins.otp_totp'
+    'django_otp.plugins.otp_totp',
+    'djangosecure',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -52,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django_otp.middleware.OTPMiddleware',
     'csp.middleware.CSPMiddleware'
 ]
@@ -140,64 +143,56 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 SECURE_BROWSER_XSS_FILTER = True
-
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-
-SECURE_CROSS_ORIGIN_OPENER_POLICY = "SAMEORIGIN"
-
+SECURE_CROSS_ORIGIN_OPENER_POLICY = "SAME-ORIGIN"
 SECURE_CONTENT_TYPE_NOSNIFF = True
-
 SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_SAMESITE  = 'Strict'
+SECURE_SSL_REDIRECT = True
+SECURE_FRAME_DENY = True
+SESSION_COOKIE_HTTPONLY = True
 
-X_FRAME_OPTIONS = 'DENY'
+CORS_ALLOWED_ORIGINS = ('https://admin.sg-stay-safe.com/sgstaysafe','http://admin.sg-stay-safe.com/sgstaysafe')
+CORS_ALLOW_HEADERS = (
+'accept',
+'accept-encoding',
+'authorization',
+'content-type',
+'dnt',
+'origin',
+'user-agent',
+'x-csrftoken',
+'x-requested-with',
+)
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'
+DEFAULT_CHARSET = 'utf-8'
+MEDIA_URL = ''
 
 #CSRF Security
 CSRF_COOKIE_HTTPONLY = True
-
 CSRF_COOKIE_SECURE = True
-
 CSRF_TRUSTED_ORIGINS = ('https://admin.sg-stay-safe.com/sgstaysafe','http://admin.sg-stay-safe.com/sgstaysafe')
-
 CSRF_COOKIE_DOMAIN  = ('.admin.sg-stay-safe.com')
-
 CSRF_COOKIE_SAMESITE = 'Lax'
-
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 #CSP Security
+CSP_DEFAULT_SRC = ("'self'")
+CSP_STYLE_SRC = ("'self'")
+CSP_SCRIPT_SRC = ("'self'")
+CSP_IMG_SRC = ("'self'")
+CSP_FONT_SRC = ("'self'")
+CSP_CONNECT_SRC = ("'self'")
+CSP_OBJECT_SRC = ("'self'")
+CSP_BASE_URI = ("'self'")
+CSP_FRAME_ANCESTORS = ("'self'")
+CSP_FORM_ACTION = ("'self'")
+CSP_INCLUDE_NONCE_IN = ("'script-src'")
+CSP_MANIFEST_SRC = ("'self'")
+CSP_WORKER_SRC = ("'self'")
+CSP_MEDIA_SRC = ("'self'")
 
-CSP_REPORT_URI = '<add your reporting uri>'
-
-CSP_DEFAULT_SRC = ("'self'", )
-
-CSP_STYLE_SRC = ("'self'",
-	"stackpath.bootstrapcdn.com")
-
-CSP_SCRIPT_SRC = ("'self'",
-	"ajax.cloudflare.com",
-	"static.cloudflareinsights.com",
-	"www.google-analytics.com",
-	"ssl.google-analytics.com",
-	"cdn.ampproject.org",
-	"www.googletagservices.com",
-	"pagead2.googlesyndication.com")
-
-CSP_IMG_SRC = ("'self'",
-	"www.google-analytics.com",
-	"raw.githubusercontent.com",
-	"googleads.g.doubleclick.net")
-
-CSP_FONT_SRC = ("'self'", )
-CSP_CONNECT_SRC = ("'self'",
-	"www.google-analytics.com" )
-CSP_OBJECT_SRC = ("'self'", )
-CSP_BASE_URI = ("'self'", )
-CSP_FRAME_ANCESTORS = ("'self'", )
-CSP_FORM_ACTION = ("'self'", )
-CSP_INCLUDE_NONCE_IN = ('script-src', )
-CSP_MANIFEST_SRC = ("'self'", )
-CSP_WORKER_SRC = ("'self'", )
-CSP_MEDIA_SRC = ("'self'", )
 STATIC_URL = "/static/"
 STATIC_ROOT = "/var/www/sgstaysafe/static"
 STATICFILES_DIRS = [BASE_DIR / "static"]
